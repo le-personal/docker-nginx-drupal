@@ -17,4 +17,6 @@ EXPOSE 80
 
 WORKDIR /var/www
 
+VOLUMES ["/var/www/sites/default/files"]
+
 CMD ["/usr/bin/supervisord", "-n"]
