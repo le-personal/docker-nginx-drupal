@@ -18,8 +18,6 @@ RUN usermod -a -G users www-data
 
 EXPOSE 80
 
-VOLUME ["/var/www/sites/default/files"]
-
 RUN chown -R www-data:www-data /var/www
 
 WORKDIR /var/www
