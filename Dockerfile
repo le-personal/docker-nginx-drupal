@@ -11,7 +11,7 @@ ENV LC_ALL     en_US.UTF-8
 
 RUN /usr/local/bin/composer self-update
 RUN /usr/local/bin/composer global require drush/drush:6.*
-RUN ln -s /.composer/vendor/drush/drush/drush /usr/local/bin/drush
+RUN ln -s /root/.composer/vendor/drush/drush/drush /usr/local/bin/drush
 
 RUN usermod -u 1000 www-data
 RUN usermod -a -G users www-data
