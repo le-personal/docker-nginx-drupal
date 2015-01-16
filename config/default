@@ -1,0 +1,28 @@
+server {
+	listen 80 default_server; # IPv4
+	# listen [fe80::202:b3ff:fe1e:8328]:80 default_server ipv6only=on; # IPv6
+  server_name _;
+
+	limit_conn arbeit 32;
+
+  ## Access and error logs.
+	access_log /var/log/supervisor/nginx-access.log;
+  error_log /var/log/supervisor/nginx-error.log;
+
+  ## See the blacklist.conf file at the parent dir: /etc/nginx.
+  ## Deny access based on the User-Agent header.
+  if ($bad_bot) {
+      return 444;
+  }
+  ## Deny access based on the Referer header.
+  if ($bad_referer) {
+      return 444;
+  }
+
+  ## Filesystem root of the site and index.
+  root /var/www;
+  index index.php;
+  fastcgi_keep_conn on; # keep alive to the FCGI upstream
+  include drupal.conf;
+  include drupal_upload_progress.conf;
+}
