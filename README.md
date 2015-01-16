@@ -1,6 +1,6 @@
 # nginx-drupal
 Includes nginx and php5 running with supervisor and Drupal
-Now includes Drush. This image is based on luis/nginx-php
+Now includes Drush.
 
 ## To build
 
