@@ -17,6 +17,7 @@ RUN echo '#!/bin/sh\nexit 101' > /usr/sbin/policy-rc.d && chmod +x /usr/sbin/pol
 # Basic packages
 RUN apt-get -y install php5-fpm php5-mysql php-apc php5-imagick php5-imap php5-mcrypt php5-curl php5-cli php5-gd php5-pgsql php5-sqlite php5-common php-pear curl php5-json php5-redis php5-memcache 
 RUN apt-get -y install nginx-extras git curl supervisor
+RUN apt-get -y install sendmail
 
 RUN php5enmod mcrypt
 
@@ -27,7 +28,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 # Install Composer and Drush
 RUN /usr/local/bin/composer self-update
 RUN /usr/local/bin/composer global require drush/drush:6.*
-RUN ln -s /.composer/vendor/drush/drush/drush /usr/local/bin/drush
+RUN ln -s /root/.composer/vendor/drush/drush/drush /usr/local/bin/drush
 
 # Prepare directory
 RUN mkdir /var/www
