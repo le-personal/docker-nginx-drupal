@@ -65,6 +65,7 @@ ADD ./config/nginx/fastcgi_drupal.conf /etc/nginx/fastcgi_drupal.conf
 ADD ./config/nginx/fastcgi_microcache_zone.conf /etc/nginx/fastcgi_microcache_zone.conf
 ADD ./config/nginx/fastcgi_no_args_drupal.conf /etc/nginx/fastcgi_no_args_drupal.conf
 ADD ./config/nginx/map_cache.conf /etc/nginx/map_cache.conf
+ADD ./config/nginx/microcache_fcgi.conf /etc/nginx/microcache_fcgi.conf
 ADD ./config/nginx/microcache_fcgi_auth.conf /etc/nginx/microcache_fcgi_auth.conf
 ADD ./config/nginx/mime.types /etc/nginx/mime.types
 ADD ./config/nginx/nginx.conf /etc/nginx/nginx.conf
@@ -73,4 +74,6 @@ ADD ./config/nginx/map_block_http_methods.conf /etc/nginx/map_block_http_methods
 ADD ./config/nginx/map_https_fcgi.conf /etc/nginx/map_https_fcgi.conf
 ADD ./config/nginx/nginx_status_allowed_hosts.conf /etc/nginx/nginx_status_allowed_hosts.conf
 ADD ./config/nginx/cron_allowed_hosts.conf /etc/nginx/cron_allowed_hosts.conf
+ADD ./config/nginx/php_fpm_status_allowed_hosts.conf /etc/nginx/php_fpm_status_allowed_hosts.conf
 ADD ./config/nginx/default /etc/nginx/sites-enabled/default
+
