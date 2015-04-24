@@ -8,6 +8,12 @@ RUN locale-gen en_US.UTF-8
 ENV LANG       en_US.UTF-8
 ENV LC_ALL     en_US.UTF-8
 
+ENV SMTP_HOST smtp.gmail.com
+ENV SMTP_PORT 587
+ENV SMTP_FROMNAME My Name
+ENV SMTP_USERNAME username@example.com
+ENV SMTP_PASSWORD secret
+
 # Update system
 RUN apt-get update && apt-get dist-upgrade -y
 
@@ -17,7 +23,7 @@ RUN echo '#!/bin/sh\nexit 101' > /usr/sbin/policy-rc.d && chmod +x /usr/sbin/pol
 # Basic packages
 RUN apt-get -y install php5-fpm php5-mysql php-apc php5-imagick php5-imap php5-mcrypt php5-curl php5-cli php5-gd php5-pgsql php5-sqlite php5-common php-pear curl php5-json php5-redis php5-memcache 
 RUN apt-get -y install nginx-extras git curl supervisor
-RUN apt-get -y install sendmail
+RUN apt-get -y install msmtp msmtp-mta 
 
 RUN php5enmod mcrypt
 
@@ -45,6 +51,25 @@ CMD ["/usr/bin/supervisord", "-n"]
 # This startup script wll configure nginx
 ADD ./startup.sh /opt/startup.sh
 RUN chmod +x /opt/startup.sh
+
+ADD ./mail.sh /opt/mail.sh
+RUN chmod +x /opt/mail.sh
+
+# We want it empty
+RUN touch /etc/msmtprc
+RUN chgrp mail /etc/msmtprc
+RUN chmod 660 /etc/msmtprc
+RUN touch /var/log/supervisor/msmtp.log
+RUN chgrp mail /var/log/supervisor/msmtp.log
+RUN chmod 660 /var/log/supervisor/msmtp.log
+RUN adduser www-data mail
+
+RUN rm /usr/sbin/sendmail
+RUN rm /usr/lib/sendmail
+
+RUN ln -s /usr/bin/msmtp /usr/sbin/sendmail
+RUN ln -s /usr/bin/msmtp /usr/bin/sendmail
+RUN ln -s /usr/bin/msmtp /usr/lib/sendmail
 
 RUN mkdir -p /var/cache/nginx/microcache
 
