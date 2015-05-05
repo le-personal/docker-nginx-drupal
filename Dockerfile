@@ -55,6 +55,9 @@ RUN chmod +x /opt/startup.sh
 ADD ./mail.sh /opt/mail.sh
 RUN chmod +x /opt/mail.sh
 
+ADD ./cron.sh /opt/cron.sh
+RUN chmod +x /opt/cron.sh
+
 # We want it empty
 RUN touch /etc/msmtprc
 RUN chgrp mail /etc/msmtprc
