@@ -38,7 +38,6 @@ RUN chown -R www-data:www-data /var/www
 
 EXPOSE 80
 WORKDIR /var/www
-VOLUME ["/var/www/sites/default/files"]
 CMD ["/usr/bin/supervisord", "-n"]
 
 # Startup script
