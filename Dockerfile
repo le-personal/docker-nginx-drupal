@@ -30,7 +30,6 @@ php-pear curl \
 php5-json \
 php5-redis \
 php5-memcache \
-memcached \
 nginx-extras \
 git \
 supervisor \
