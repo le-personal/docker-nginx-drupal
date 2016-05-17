@@ -68,6 +68,9 @@ RUN chmod +x /opt/cron.sh
 
 RUN mkdir -p /var/cache/nginx/microcache
 
+# Avoid sendmail starting as a service
+RUN update-rc.d sendmail disable
+
 ### Add configuration files
 # Supervisor
 ADD ./config/supervisor/supervisord-nginx.conf /etc/supervisor/conf.d/supervisord-nginx.conf
