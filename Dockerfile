@@ -63,6 +63,9 @@ CMD ["/usr/bin/supervisord", "-n"]
 ADD ./startup.sh /opt/startup.sh
 RUN chmod +x /opt/startup.sh
 
+ADD ./cron.sh /opt/cron.sh
+RUN chmod +x /opt/cron.sh
+
 RUN mkdir -p /var/cache/nginx/microcache
 
 ### Add configuration files
